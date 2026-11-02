@@ -24,3 +24,5 @@ models/*.joblib
 
 # Configuracion local de VS Code
 .vscode/
+
+
