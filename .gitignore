@@ -1,0 +1,26 @@
+
+# Entorno virtual de Python
+.venv/
+venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Variables de entorno y credenciales
+.env
+.env.*
+
+# Datos generados
+data/raw/
+data/processed/
+
+# Modelos entrenados
+models/*.pkl
+models/*.joblib
+
+# Archivos de Jupyter
+.ipynb_checkpoints/
+
+# Configuracion local de VS Code
+.vscode/
