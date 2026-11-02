@@ -63,6 +63,22 @@ variable_objetivo = "resultado_procesamiento"
 X = df[variables_predictoras].copy()
 y = df[variable_objetivo].copy()
 
+# Variables derivadas para validar longitud de identificadores
+
+X["cuenta_longitud_valida"] = (
+    df["numero_cuenta"]
+    .astype(str)
+    .str.fullmatch(r"\d{11}")
+    .astype(int)
+)
+
+X["credito_longitud_valida"] = (
+    df["numero_credito"]
+    .astype(str)
+    .str.fullmatch(r"\d{11}")
+    .astype(int)
+)
+
 print("\nVariables predictoras seleccionadas:")
 print(variables_predictoras)
 
