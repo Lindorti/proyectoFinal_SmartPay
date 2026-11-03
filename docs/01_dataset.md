@@ -31,6 +31,19 @@ Sus principales características son:
 
 La distribución equilibrada entre solicitudes aceptadas y rechazadas facilita el desarrollo del ejercicio de clasificación. Sin embargo, no representa necesariamente la proporción de resultados de un proceso financiero real.
 
+### 2.1. Muestra de registros
+
+La siguiente tabla presenta cuatro registros de ejemplo tomados directamente del archivo `solicitudes_smartpay.csv`. Los datos son sintéticos y no corresponden a clientes ni operaciones reales.
+
+| ID solicitud | Tipo de operación | Valor del pago | Valor de referencia | Saldo disponible | Resultado |
+|---|---|---:|---:|---:|---|
+| SP0454 | Abono a capital | 3.726.000 | Capital pendiente: 4.674.000 | 4.389.000 | Aceptado |
+| SP0389 | Pago de cuota | 203.000 | Cuota pendiente: 203.000 | 653.000 | Aceptado |
+| SP0636 | Pago de cuota | 743.000 | Cuota pendiente: 743.000 | 1.359.000 | Aceptado |
+| SP1909 | Abono a intereses | 270.000 | Intereses pendientes: 415.000 | 269.000 | Rechazado |
+
+En el cuarto registro, el saldo disponible (269.000) es inferior al valor del pago (270.000). Por esta razón, el resultado registrado es Rechazado y el motivo corresponde a saldo insuficiente. La tabla constituye una muestra ilustrativa de los campos originales del dataset.
+
 ## 3. Objetivo del dataset
 
 El objetivo principal es proporcionar información simulada que permita identificar las condiciones asociadas con la aceptación o el rechazo de una solicitud de aplicación de pagos.

@@ -31,7 +31,23 @@ scikit-learn developers. (s. f.). *Decision trees*. https://scikit-learn.org/sta
 
 scikit-learn developers. (s. f.). *Model evaluation: Quantifying the quality of predictions*. https://scikit-learn.org/stable/modules/model_evaluation.html
 
+Matplotlib Development Team. (s. f.). *Matplotlib documentation*. https://matplotlib.org/stable/
+
+NumPy Developers. (s. f.). *NumPy documentation*. https://numpy.org/doc/
+
+Streamlit. (s. f.). *Streamlit documentation*. https://docs.streamlit.io/
+
+Joblib developers. (s. f.). *Joblib documentation*. https://joblib.readthedocs.io/
+
+Git. (s. f.). *Git documentation*. https://git-scm.com/doc
+
+GitHub. (s. f.). *GitHub Docs*. https://docs.github.com/
+
+SmartPay. (2026). *Dataset sintético de solicitudes de aplicación de pagos de cartera* [Conjunto de datos generado mediante el script `src/generar_dataset.py`]. Elaboración propia.
+
 ## 3. Nota sobre las fuentes
 
-Las referencias corresponden a la documentación técnica utilizada como apoyo para el desarrollo de SmartPay, especialmente en el manejo de datos, construcción del modelo de clasificación y evaluación de resultados. Se recomienda verificar las indicaciones institucionales para la presentación final de las referencias bajo normas APA, séptima edición.# 08. Revisión de requisitos y pendientes de entrega
+Las referencias corresponden a la documentación técnica consultada como apoyo para el desarrollo de SmartPay, especialmente en programación, manipulación y visualización de datos, construcción y evaluación del modelo, desarrollo de la interfaz y control de versiones. El dataset fue elaborado para este proyecto mediante un generador propio; por tanto, no se atribuye a una fuente externa.
+
+Las referencias se presentan con los datos institucionales disponibles en la documentación oficial. Si la institución exige APA 7 estricta, se debe aplicar el formato final solicitado por el docente, incluyendo fecha de recuperación únicamente cuando corresponda a contenidos diseñados para cambiar continuamente.# 08. Revisión de requisitos y pendientes de entrega
 
