@@ -1,46 +1,45 @@
-# 08. Revisión de requisitos y estado del proyecto SmartPay
+# 08. Revisión de requisitos y estado final del proyecto SmartPay
 
 ## 1. Requisitos de Machine Learning
 
-| Requisito | Estado | Evidencia / acción |
+| Requisito | Estado | Evidencia |
 |---|---|---|
-| Seleccionar un modelo sencillo | Realizado | Árbol de Decisión. |
-| Justificar el modelo | Documentado | `02_modelo_y_resultados.md`. |
+| Seleccionar un modelo de Machine Learning | Realizado | Árbol de Decisión. |
+| Justificar el modelo seleccionado | Documentado | `02_modelo_y_resultados.md`. |
 | Describir el dataset | Documentado | `01_dataset.md`. |
-| Mostrar una tabla pequeña de datos | Realizado parcialmente | Se dispone de una muestra ficticia explicativa. Incorporar una muestra literal del CSV si el docente lo exige. |
-| Explicar variables y objetivo | Documentado | Diccionario de datos y sección de preprocesamiento. |
-| Calcular métricas | Realizado | Accuracy, Precision, Recall y F1-score. |
+| Presentar una muestra de datos | Realizado | Tabla de cuatro registros sintéticos tomada del CSV, incluida en `README.md` y `01_dataset.md`. |
+| Explicar variables y variable objetivo | Documentado | Diccionario de datos y preprocesamiento. |
+| Calcular métricas de evaluación | Realizado | Accuracy, Precision, Recall y F1-score. |
 | Presentar e interpretar resultados | Documentado | `02_modelo_y_resultados.md`. |
 | Incluir matriz de confusión | Realizado | Matriz con valores 151, 49, 27 y 173. |
-| Explicar TP, FP, TN y FN | Documentado | Clase positiva definida como Rechazado. |
+| Explicar TP, FP, TN y FN | Documentado | Interpretación de la clase positiva Rechazado. |
 | Realizar análisis ético y de sesgos | Documentado | `06_analisis_etico.md`. |
-| Evaluar equidad, privacidad e impacto social | Documentado | `06_analisis_etico.md`. |
-| Presentar conclusiones técnicas y recomendaciones | Documentado | `02_modelo_y_resultados.md`. |
-| Comparar el modelo con un baseline | Realizado | `comparacion_baseline.py` y `comparacion_modelos.csv`. |
+| Evaluar privacidad e impacto social | Documentado | `06_analisis_etico.md`. |
+| Presentar conclusiones y recomendaciones | Documentado | `02_modelo_y_resultados.md`. |
+| Comparar el modelo con un baseline | Realizado | `comparacion_baseline.py` y resultados documentados. |
 | Establecer criterios de aceptación | Documentado | `02_modelo_y_resultados.md`. |
 
 ## 2. Requisitos de arquitectura y repositorio
 
-| Requisito | Estado | Evidencia / acción |
+| Requisito | Estado | Evidencia |
 |---|---|---|
-| README que explique problema, datos, solución y validación | Actualizado | `README.md`. |
-| Definir qué hará y qué no hará el sistema | Documentado | `README.md` y `03_arquitectura_c4.md`. |
-| Diagrama C4 de contexto | Documentado | Diagrama Mermaid en `03_arquitectura_c4.md`. |
-| Decisiones de arquitectura (ADR) | Documentado | `04_adr.md`. |
-| Entre 3 y 5 riesgos técnicos y mitigaciones | Documentado | Cinco riesgos en `05_riesgos.md`. |
-| Glosario y referencias | Documentado | `07_glosario_referencias.md`. |
-| Commits en rama individual | En desarrollo | Rama individual publicada: `dev_jcol_10`. Continuar realizando los commits exclusivamente en esta rama. |
-| Consolidar el proyecto en `develop` | Pendiente | Crear Pull Request desde `dev_jcol_10` hacia `develop` y verificar su integración. |
-| Nombre del repositorio | Realizado | `proyectoFinal_SmartPay`. |
+| README con problema, datos, solución y validación | Realizado | `README.md`. |
+| Definir alcance y funcionalidades fuera del alcance | Documentado | `README.md` y `03_arquitectura_c4.md`. |
+| Diagrama C4 de contexto | Realizado | `03_arquitectura_c4.md`. |
+| Decisiones de arquitectura (ADR) | Realizado | `04_adr.md`. |
+| Identificar riesgos técnicos y mitigaciones | Realizado | `05_riesgos.md`. |
+| Glosario y referencias | Realizado | `07_glosario_referencias.md`, con documentación oficial de las herramientas y fuente propia del dataset. |
+| Mantener una rama individual de desarrollo | Realizado | `dev_jcol_10`. |
+| Consolidar el desarrollo en `develop` | Realizado | Pull Requests #1 y #2 integrados. |
+| Publicar el repositorio con el nombre establecido | Realizado | `proyectoFinal_SmartPay`. |
 
 ## 3. Pruebas automatizadas de validación
 
 Se implementaron pruebas automatizadas utilizando la biblioteca `unittest` de Python para verificar el funcionamiento de las reglas de negocio de SmartPay.
 
-Se ejecutaron 24 pruebas que contemplaron:
+Se ejecutaron 24 pruebas relacionadas con:
 
-- Números de cuenta con longitudes de 10, 11 y 12 dígitos.
-- Números de crédito con longitudes de 10, 11 y 12 dígitos.
+- Longitud de los números de cuenta y crédito.
 - Identificadores con caracteres no numéricos.
 - Campos obligatorios completos e incompletos.
 - Valores de pago positivos, negativos, cero y no numéricos.
@@ -70,11 +69,11 @@ Se ejecutaron 24 pruebas que contemplaron:
 python src/test_validaciones.py
 ```
 
-Las 24 pruebas finalizaron correctamente, sin errores ni fallos. Esto permite verificar el comportamiento de las funciones individuales de validación frente a los escenarios definidos.
+Las 24 pruebas finalizaron correctamente. Esto permite verificar el comportamiento de las funciones de validación frente a los escenarios definidos.
 
 ## 4. Resultados de la comparación con Baseline
 
-Para evaluar el desempeño del Árbol de Decisión se implementó un modelo de referencia utilizando `DummyClassifier` de scikit-learn, con la estrategia `most_frequent`.
+Para evaluar el desempeño del Árbol de Decisión se implementó un modelo de referencia mediante `DummyClassifier` de scikit-learn, utilizando la estrategia `most_frequent`.
 
 La comparación se realizó con los mismos conjuntos de entrenamiento y prueba.
 
@@ -85,7 +84,7 @@ La comparación se realizó con los mismos conjuntos de entrenamiento y prueba.
 | Recall (Rechazado) | 75,50 % | 100,00 % |
 | F1-score (Rechazado) | 79,89 % | 66,67 % |
 
-El Árbol de Decisión obtuvo mejores resultados generales de clasificación que el modelo de referencia. El baseline alcanzó un Recall del 100 % para la clase Rechazado porque clasificó todas las solicitudes como rechazadas, incluyendo las que realmente eran aceptadas.
+El Árbol de Decisión obtuvo mejores resultados generales de clasificación que el modelo de referencia. El baseline clasificó todas las solicitudes como rechazadas, incluyendo las que realmente eran aceptadas.
 
 **Archivos de evidencia:**
 
@@ -93,83 +92,18 @@ El Árbol de Decisión obtuvo mejores resultados generales de clasificación que
 - `reports/metricas/comparacion_modelos.csv`.
 - `reports/graficas/matriz_confusion_baseline.png`.
 
-## 5. Pendientes técnicos prioritarios
-
-Aunque se han completado varios componentes, todavía se deben realizar las siguientes verificaciones antes de considerar finalizado el proyecto:
-
-1. **Validación del generador de datos:** revisar que las etiquetas generadas correspondan con las condiciones simuladas y que no existan inconsistencias o fuga de información.
-2. **Aplicación:** revisar `src/aplicacion.py` y verificar su funcionamiento. No presentar una interfaz como terminada hasta que haya sido implementada y probada.
-3. **Reproducibilidad:** verificar que `requirements.txt` incluya todas las dependencias necesarias y que el proyecto pueda ejecutarse desde una instalación limpia.
-4. **Preprocesamiento:** revisar que las transformaciones y codificaciones se ajusten correctamente y que no se produzca fuga de información entre entrenamiento y prueba.
-5. **Evidencias:** conservar los gráficos originales generados por los scripts y verificar que las imágenes incluidas en el repositorio sean legibles y correspondan a los resultados reportados.
-6. **Integración en GitHub:** publicar los últimos cambios y consolidar el proyecto en `develop` mediante un Pull Request.
-
-## 6. Revisión metodológica
-
-El modelo Árbol de Decisión obtuvo una exactitud de entrenamiento de 81,81 % y una exactitud de prueba de 81,00 %.
-
-La diferencia entre ambos resultados es pequeña, pero no es suficiente por sí sola para descartar sobreajuste.
-
-El dataset utilizado contiene registros sintéticos y sus etiquetas se construyeron a partir de reglas simuladas. Por esta razón, los resultados permiten evaluar el comportamiento experimental del algoritmo, pero no demuestran que pueda clasificar correctamente solicitudes reales de una entidad bancaria.
-
-La comparación con el baseline mostró que el Árbol de Decisión obtuvo un Accuracy de 81 %, frente al 50 % del modelo de referencia.
-
-También se debe prestar especial atención a los falsos negativos: solicitudes que realmente pertenecen a la clase Rechazado, pero que el modelo clasifica como Aceptado. En la evaluación se identificaron 49 casos de este tipo.
-
-La predicción del modelo no debe autorizar pagos ni reemplazar las validaciones determinísticas del proceso.
-
-## 7. Control de ramas y repositorio
-
-El repositorio del proyecto es:
-
-https://github.com/Lindorti/proyectoFinal_SmartPay
-
-La rama individual de trabajo es:
-
-`dev_jcol_10`
-
-Esta rama fue publicada correctamente en GitHub y quedó configurada para realizar seguimiento a `origin/dev_jcol_10`.
-
-El procedimiento pendiente es:
-
-1. Continuar realizando los cambios y commits exclusivamente en `dev_jcol_10`.
-2. Verificar que todos los archivos requeridos estén incluidos y actualizados.
-3. Publicar los últimos cambios en GitHub.
-4. Crear un Pull Request desde `dev_jcol_10` hacia `develop`.
-5. Verificar que los cambios queden integrados correctamente en `develop`.
-6. Conservar el historial de commits como evidencia del desarrollo individual.
-
-No eliminar las ramas anteriores hasta verificar que el historial y los cambios requeridos estén correctamente consolidados.
-
-## 8. Estado general del proyecto
-
-SmartPay cuenta con una estructura organizada de desarrollo, generación de datos sintéticos, validaciones de negocio, entrenamiento de un Árbol de Decisión y evaluación del modelo mediante métricas y matriz de confusión.
-
-Durante el desarrollo también se implementó una comparación con un modelo baseline y se construyeron 24 pruebas automatizadas para verificar las funciones principales de validación.
-
-La documentación técnica y académica se encuentra distribuida en ocho archivos Markdown, además del README principal.
-
-Los siguientes pasos se concentran en revisar la aplicación, verificar la reproducibilidad, validar el generador de datos y completar la consolidación del proyecto en la rama `develop`, de acuerdo con las instrucciones académicas.
-
-## 9. Consideraciones finales
-
-Los resultados obtenidos corresponden a un ejercicio académico realizado con datos sintéticos y no deben interpretarse como una validación de desempeño en operaciones financieras reales.
-
-El prototipo mantiene las reglas de negocio como controles principales y utiliza el modelo de Machine Learning únicamente con fines experimentales.
-
-Cualquier implementación futura requeriría datos representativos y autorizados, controles de seguridad, pruebas independientes, auditoría, supervisión humana y aprobación de las áreas responsables.
-
-## 10. Pruebas funcionales de la aplicación SmartPay
+## 5. Aplicación y validación funcional
 
 Se implementó una interfaz web utilizando Streamlit para integrar el registro de solicitudes, las validaciones de negocio y la clasificación experimental mediante el Árbol de Decisión.
 
-Durante las pruebas funcionales se evaluaron dos escenarios con información completamente ficticia.
+Durante las pruebas funcionales se evaluaron dos escenarios con información ficticia.
 
 ### Prueba 1. Solicitud válida
 
 Se ingresaron datos de prueba con número de cuenta y crédito de 11 dígitos, cuenta activa, crédito vigente, correspondencia correcta entre crédito y NIT, saldo suficiente y valor de pago igual a la cuota pendiente.
 
 **Resultado obtenido:**
+
 - Las validaciones de negocio fueron superadas.
 - El modelo realizó la clasificación experimental.
 - La predicción obtenida fue ACEPTADO.
@@ -179,14 +113,60 @@ Se ingresaron datos de prueba con número de cuenta y crédito de 11 dígitos, c
 Se modificó el número de cuenta para que tuviera 10 dígitos y se ingresó un valor de pago diferente al de la cuota pendiente.
 
 **Resultado obtenido:**
+
 - La aplicación detectó que la cuenta no cumplía la longitud requerida.
 - Identificó que el valor del pago no coincidía con la cuota pendiente.
 - Impidió ejecutar la clasificación del modelo debido a los errores encontrados.
 
-### Conclusión de las pruebas funcionales
+Las pruebas permitieron verificar la integración del formulario, las reglas de negocio y la clasificación experimental. Se comprobó que las solicitudes que presentan inconsistencias no continúan hacia la predicción del modelo.
 
-Los dos escenarios ejecutados demostraron que la aplicación integra correctamente el formulario, las reglas de negocio y el modelo de clasificación experimental.
+## 6. Revisión metodológica y técnica
 
-Se comprobó que una solicitud que supera las validaciones puede continuar hacia la clasificación, mientras que una solicitud con inconsistencias queda detenida antes de utilizar el modelo.
+El modelo Árbol de Decisión obtuvo una exactitud de entrenamiento de 81,81 % y una exactitud de prueba de 81,00 %.
 
-Las pruebas se realizaron exclusivamente con datos sintéticos. Estos resultados corresponden a una verificación funcional inicial y no representan una validación en sistemas financieros reales.
+El dataset utilizado contiene registros sintéticos y sus etiquetas fueron construidas a partir de reglas simuladas. Por esta razón, los resultados permiten evaluar el comportamiento experimental del algoritmo, pero no demuestran que pueda clasificar correctamente solicitudes reales de una entidad bancaria.
+
+También se debe prestar especial atención a los falsos negativos: solicitudes que realmente pertenecen a la clase Rechazado, pero que el modelo clasifica como Aceptado. En la evaluación se identificaron 49 casos de este tipo.
+
+La predicción del modelo no debe autorizar pagos ni reemplazar las validaciones determinísticas del proceso.
+
+Para reproducir la aplicación desde una descarga nueva del repositorio se deben regenerar los datos y el modelo, debido a que los archivos generados están excluidos del control de versiones mediante `.gitignore`.
+
+## 7. Control de ramas y repositorio
+
+El repositorio del proyecto es:
+
+https://github.com/Lindorti/proyectoFinal_SmartPay
+
+La rama individual de desarrollo es:
+
+`dev_jcol_10`
+
+La consolidación del proyecto en la rama `develop` se realizó mediante los siguientes Pull Requests:
+
+- Pull Request #1: Consolidación del desarrollo individual de SmartPay.
+- Pull Request #2: Actualización del README y documentación final de SmartPay.
+
+Ambos Pull Requests fueron integrados en `develop`.
+
+La rama individual se conserva como evidencia del desarrollo y del historial de commits. La rama `develop` contiene la versión consolidada del proyecto.
+
+No se requiere eliminar las ramas anteriores, ya que forman parte del historial de trabajo y permiten conservar la trazabilidad del desarrollo.
+
+## 8. Estado general del proyecto
+
+SmartPay cuenta con una estructura organizada para la generación de datos sintéticos, validaciones de negocio, entrenamiento de un Árbol de Decisión y evaluación del modelo mediante métricas y matriz de confusión.
+
+También se implementó una aplicación local con Streamlit, una comparación con un modelo baseline y 24 pruebas automatizadas para verificar las funciones principales de validación.
+
+La documentación técnica y académica se encuentra distribuida en ocho archivos Markdown, además del README principal.
+
+El desarrollo individual fue consolidado en la rama `develop` mediante Pull Requests, conservando el historial de cambios en GitHub.
+
+## 9. Consideraciones finales
+
+Los resultados obtenidos corresponden a un ejercicio académico realizado con datos sintéticos y no deben interpretarse como una validación de desempeño en operaciones financieras reales.
+
+El prototipo mantiene las reglas de negocio como controles principales y utiliza el modelo de Machine Learning únicamente con fines experimentales.
+
+Cualquier implementación futura requeriría datos representativos y autorizados, controles de seguridad, pruebas independientes, auditoría, supervisión humana y aprobación de las áreas responsables.

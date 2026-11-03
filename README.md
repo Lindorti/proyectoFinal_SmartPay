@@ -158,16 +158,73 @@ Si todas las validaciones se superan y el modelo está disponible, se presenta e
 
 La predicción tiene una finalidad exclusivamente académica y experimental.
 
-### Ejecución de la aplicación
+### 6.4. Instalación, generación de resultados y ejecución
 
-Desde la carpeta raíz del proyecto, ejecutar:
+Para ejecutar SmartPay desde una descarga nueva del repositorio, es necesario generar localmente el dataset, los archivos procesados y el modelo. Estos artefactos no se publican porque están excluidos del control de versiones mediante `.gitignore`.
+
+Los comandos deben ejecutarse desde la carpeta raíz del proyecto y en el siguiente orden.
+
+**Paso 1. Instalar las dependencias**
 
 ```bash
 python -m pip install -r requirements.txt
+```
+
+**Paso 2. Generar el dataset sintético**
+
+```bash
+python src/generar_dataset.py
+```
+
+**Paso 3. Explorar el dataset y generar las gráficas descriptivas**
+
+```bash
+python src/exploracion.py
+```
+
+**Paso 4. Realizar el preprocesamiento de los datos**
+
+```bash
+python src/preprocesamiento.py
+```
+
+**Paso 5. Entrenar el modelo de Machine Learning**
+
+```bash
+python src/entrenamiento.py
+```
+
+**Paso 6. Evaluar el modelo y generar sus métricas y matriz de confusión**
+
+```bash
+python src/evaluacion.py
+```
+
+**Paso 7. Comparar el Árbol de Decisión con el modelo Baseline**
+
+```bash
+python src/comparacion_baseline.py
+```
+
+**Paso 8. Ejecutar la aplicación web**
+
+```bash
 python -m streamlit run src/aplicacion.py
 ```
 
-Streamlit iniciará el servidor local y permitirá abrir la aplicación en el navegador.
+Streamlit iniciará un servidor local y mostrará la dirección para abrir SmartPay en el navegador.
+
+**Nota:** Los archivos generados se almacenan localmente. Por ello, al descargar el repositorio por primera vez se deben ejecutar los pasos anteriores antes de abrir la aplicación. Si únicamente se desea ejecutar la aplicación y ya existen el dataset procesado y el modelo, basta con ejecutar el comando del paso 8.
+
+### 6.5. Ejecución de pruebas automatizadas
+
+Para ejecutar las pruebas automatizadas de validación, utilizar el siguiente comando desde la carpeta raíz:
+
+```bash
+python src/test_validaciones.py
+```
+
+La última ejecución registrada reportó 24 pruebas exitosas y ningún error.
 
 ## 7. Estructura del proyecto
 
@@ -199,20 +256,8 @@ SmartPay/
 │
 ├── reports/
 │   ├── evidencias/
-│   │   ├── arbol_decision_evidencia.png
-│   │   └── matriz_confusion_evidencia.png
-│   │
 │   ├── graficas/
-│   │   ├── arbol_decision_smartpay.png
-│   │   ├── distribucion_operaciones.png
-│   │   ├── distribucion_resultados.png
-│   │   ├── matriz_confusion_baseline.png
-│   │   ├── matriz_confusion_smartpay.png
-│   │   └── motivos_rechazo.png
-│   │
 │   └── metricas/
-│       ├── comparacion_modelos.csv
-│       └── metricas_smartpay.csv
 │
 ├── src/
 │   ├── aplicacion.py
@@ -231,7 +276,7 @@ SmartPay/
 └── requirements.txt
 ```
 
-**Nota:** los archivos de datos procesados y el modelo serializado pueden regenerarse ejecutando los scripts correspondientes. La estructura anterior describe los archivos del proyecto; los elementos excluidos mediante `.gitignore` no necesariamente se encuentran publicados en GitHub.
+**Nota:** La estructura representa la organización del proyecto. Los archivos de datos, modelos y resultados que se generan durante la ejecución pueden no encontrarse publicados en GitHub, debido a las reglas establecidas en `.gitignore`. Estos archivos se pueden regenerar mediante los scripts correspondientes.
 
 ## 8. Dataset utilizado
 
@@ -250,7 +295,20 @@ El dataset fue generado mediante Python y contiene registros ficticios de solici
 
 Después del preprocesamiento se obtuvieron 19 variables predictoras, incluyendo variables categóricas codificadas e indicadores derivados de la longitud válida de cuenta y crédito.
 
-### Distribución de los datos
+### 8.1. Muestra de registros del dataset
+
+La siguiente tabla presenta cuatro registros de ejemplo tomados del archivo sintético `data/raw/solicitudes_smartpay.csv`. Los identificadores y valores son ficticios y se muestran únicamente con fines académicos.
+
+| ID solicitud | Tipo de operación | Valor del pago | Valor de referencia | Saldo disponible | Resultado |
+|---|---|---:|---:|---:|---|
+| SP0454 | Abono a capital | 3.726.000 | Capital pendiente: 4.674.000 | 4.389.000 | Aceptado |
+| SP0389 | Pago de cuota | 203.000 | Cuota pendiente: 203.000 | 653.000 | Aceptado |
+| SP0636 | Pago de cuota | 743.000 | Cuota pendiente: 743.000 | 1.359.000 | Aceptado |
+| SP1909 | Abono a intereses | 270.000 | Intereses pendientes: 415.000 | 269.000 | Rechazado |
+
+En el último registro, el saldo disponible es inferior al valor del pago, por lo que la solicitud se clasifica como rechazada por saldo insuficiente. La muestra permite observar cómo se relacionan algunos campos de entrada con el resultado registrado.
+
+### 8.2. Distribución de los datos
 
 La división utilizada fue estratificada:
 
@@ -396,15 +454,25 @@ Las pruebas contemplan:
 - Validación de valores de pago positivos.
 - Validación de los cuatro tipos de operación.
 
-La ejecución de las pruebas reportó:
+La última ejecución de las pruebas reportó:
 
-**24 pruebas ejecutadas correctamente (OK).**
+| Indicador | Resultado |
+|---|---:|
+| Pruebas ejecutadas | 24 |
+| Pruebas exitosas | 24 |
+| Pruebas fallidas | 0 |
+| Resultado | OK |
 
 El código correspondiente se encuentra en:
 
-- `src/prueba_validaciones.py`
 - `src/test_validaciones.py`
 - `src/validaciones.py`
+
+Para ejecutar las pruebas:
+
+```bash
+python src/test_validaciones.py
+```
 
 ## 13. Documentación adicional
 
@@ -419,7 +487,7 @@ La documentación técnica y académica se encuentra organizada en los siguiente
 7. [Glosario y referencias](docs/07_glosario_referencias.md)
 8. [Revisión de requisitos y estado del proyecto](docs/08_revision_requisitos.md)
 
-Las evidencias gráficas se encuentran en `reports/evidencias/`, `reports/graficas/` y `reports/metricas/`.
+Las evidencias gráficas se encuentran organizadas en las carpetas `reports/evidencias/`, `reports/graficas/` y `reports/metricas/`, según los archivos generados durante la ejecución.
 
 ## 14. Limitaciones y oportunidades de mejora
 
@@ -461,7 +529,7 @@ Las ramas utilizadas son:
 - `feature/linda-dataset`: rama de trabajo anterior.
 - `feature/linda-validaciones`: rama de trabajo anterior.
 
-La consolidación del desarrollo individual se realizó mediante un Pull Request desde `dev_jcol_10` hacia `develop`.
+La consolidación del desarrollo individual se realizó mediante Pull Requests desde `dev_jcol_10` hacia `develop`.
 
 Los cambios del proyecto se registraron mediante commits para conservar la trazabilidad del desarrollo.
 
@@ -486,14 +554,14 @@ Finalmente, se reconoce que el uso de datos sintéticos limita la generalizació
 - scikit-learn. (s. f.). *scikit-learn documentation*. https://scikit-learn.org/stable/
 - Streamlit. (s. f.). *Streamlit documentation*. https://docs.streamlit.io/
 - Joblib. (s. f.). *Joblib documentation*. https://joblib.readthedocs.io/
+- NumPy. (s. f.). *NumPy documentation*. https://numpy.org/doc/
 - Git. (s. f.). *Git documentation*. https://git-scm.com/doc
 - GitHub. (s. f.). *GitHub documentation*. https://docs.github.com/
+- SmartPay. (2026). *Dataset sintético de solicitudes de aplicación de pagos de cartera* [Conjunto de datos generado mediante `src/generar_dataset.py`]. Elaboración propia.
 
-Las referencias específicas sobre el modelo, los datos, las decisiones técnicas y el análisis ético se amplían en `docs/07_glosario_referencias.md`.
+Las referencias específicas sobre el modelo, los datos, las decisiones técnicas y el análisis ético se amplían en `docs/07_glosario_referencias.md`. La fecha del conjunto de datos corresponde al año de elaboración del proyecto; no representa una fuente externa.
 
 ---
 
 **Autora:** Linda Ortiz  
-**Proyecto:** SmartPay  
-
-
+**Proyecto:** SmartPay
